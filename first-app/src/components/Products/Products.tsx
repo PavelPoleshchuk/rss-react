@@ -1,6 +1,7 @@
-import Product from 'components/Product';
+import Product from 'components/Product/Product';
 import React, { ReactPropTypes } from 'react';
-import { IProduct } from './types/types';
+import { dataApi } from '../data/dataApi';
+import { IProduct } from '../types/types';
 
 class Products extends React.Component {
   state: { dataArr: IProduct[] };
@@ -10,9 +11,7 @@ class Products extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://fakestoreapi.com/products')
-      .then((response) => response.json())
-      .then((data) => this.setState({ dataArr: data }));
+    this.setState({ dataArr: dataApi });
   }
 
   render() {

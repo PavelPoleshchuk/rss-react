@@ -6,8 +6,6 @@
 
 :root {
   --color-header: #f7a706;
-  --color-bg-hover: #0f7dc6;
-  --color-active: white;
 }
 
 body {
@@ -15,14 +13,14 @@ body {
 }
 
 header {
-  background-color: var(--color-header);
   padding: 2rem 0;
   text-align: center;
+  background-color: var(--color-header);
 }
 header > a {
-  color: #fff;
-  text-decoration: none;
   padding: 0 1rem;
+  text-decoration: none;
+  color: #fff;
 }
 header > a:hover {
   text-decoration: underline;
@@ -30,18 +28,17 @@ header > a:hover {
 
 h1,
 h2 {
-  text-align: center;
   margin-top: 0;
+  text-align: center;
 }
 
 .container {
-  max-width: 1200px;
-  padding: 10px;
-  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
 }
 
 main {
@@ -49,8 +46,9 @@ main {
 }
 
 .link-active {
-  cursor: default;
   border: 2px solid white;
+  border-radius: 10px;
+  cursor: default;
 }
 .top-block {
   width: 100%;
@@ -62,4 +60,3 @@ main {
   top: 70px;
   left: calc(50% - 2rem);
 }
-

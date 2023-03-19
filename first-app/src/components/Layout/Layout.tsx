@@ -5,15 +5,15 @@ const Layout = () => {
   const setActive = ({ isActive }: { isActive: boolean }) => (isActive ? 'link-active' : '');
   return (
     <>
-      <header>
-        <NavLink to="/" className={setActive}>
+      <header data-testid="header">
+        <NavLink data-testid="home-page" to="/" className={setActive}>
           Home Page
         </NavLink>
-        <NavLink to="/about" className={setActive}>
+        <NavLink data-testid="about-us" to="/about" className={setActive}>
           About Us
         </NavLink>
       </header>
-      <main className="container">
+      <main data-testid="main" className="container">
         <Outlet />
       </main>
     </>

@@ -34,13 +34,16 @@ class Input extends React.Component<InputProps, InputState> {
       <>
         <form>
           <input
+            data-testid="input"
             className={styles.input}
             onChange={(event) => this.changeInput(event.target.value)}
             value={this.state.inputValue}
             type="text"
             placeholder={this.props.placeholder}
           />
-          <button className={styles.button}>Search</button>
+          <button data-testid="input-button" className={styles.button}>
+            Search
+          </button>
         </form>
       </>
     );

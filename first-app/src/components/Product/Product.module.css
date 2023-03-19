@@ -1,18 +1,18 @@
 .product {
   width: calc(100% / 4 - 3 * 10px);
   min-width: 200px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-  border: 2px solid teal;
   color: teal;
+  border: 2px solid teal;
 }
 
 .img {
-  object-fit: contain;
   width: 200px;
   height: 200px;
+  object-fit: contain;
 }
 

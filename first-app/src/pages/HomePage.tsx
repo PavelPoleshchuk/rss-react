@@ -1,5 +1,5 @@
-import Input from 'components/Input';
-import Products from 'components/Products';
+import Input from 'components/Input/Input';
+import Products from 'components/Products/Products';
 import React from 'react';
 
 const HomePage = () => {
