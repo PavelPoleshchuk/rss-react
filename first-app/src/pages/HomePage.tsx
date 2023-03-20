@@ -5,7 +5,7 @@ import React from 'react';
 const HomePage = () => {
   return (
     <>
-      <div className="top-block">
+      <div data-testid="home-page" className="top-block">
         <Input placeholder={'Your request'} />
         <span>page: Home</span>
       </div>

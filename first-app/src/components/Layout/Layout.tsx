@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <>
       <header data-testid="header">
-        <NavLink data-testid="home-page" to="/" className={setActive}>
+        <NavLink data-testid="home-page-link" to="/" className={setActive}>
           Home Page
         </NavLink>
         <NavLink data-testid="about-us" to="/about" className={setActive}>

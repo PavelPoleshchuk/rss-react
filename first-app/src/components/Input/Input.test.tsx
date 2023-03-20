@@ -8,6 +8,7 @@ describe('Input', () => {
   it('Input was rendered', () => {
     render(<Input placeholder={'xxx'} />);
     expect(screen.getByTestId('input')).toBeDefined();
+    expect(screen.getByTestId('input')).toHaveAttribute('placeholder', 'xxx');
   });
 });
 
