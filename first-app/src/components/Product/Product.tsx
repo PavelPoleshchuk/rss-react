@@ -1,6 +1,9 @@
+import { IProduct } from 'components/types/types';
 import React from 'react';
 import styles from './Product.module.css';
-import { IProductProps } from '../types/types';
+export interface IProductProps {
+  product: IProduct;
+}
 
 const Product = ({ product }: IProductProps) => {
   return (

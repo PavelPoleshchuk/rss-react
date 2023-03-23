@@ -25,7 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .tsx --ext .ts",
+    "lint-fix": "eslint . --ext .tsx --ext .ts --fix"
   },
   "eslintConfig": {
     "extends": [

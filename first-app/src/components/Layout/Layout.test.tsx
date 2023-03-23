@@ -2,9 +2,9 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from '../../App';
 import { BrowserRouter } from 'react-router-dom';
-import NotFoundPage from 'pages/NotFoundPage';
-import HomePage from 'pages/HomePage';
-import AboutUs from 'pages/AboutUs';
+import NotFoundPage from 'pages/notFound/NotFoundPage';
+import HomePage from 'pages/homePage/HomePage';
+import AboutUs from 'pages/aboutUs/AboutUs';
 
 describe('Header', () => {
   it('header was rendered', () => {
@@ -26,11 +26,18 @@ describe('Header', () => {
     );
     const homePageLink = screen.getByTestId('home-page-link');
     const aboutUsLink = screen.getByTestId('about-us');
+    const formsPage = screen.getByTestId('forms-page');
     expect(homePageLink).toHaveClass('link-active');
     expect(aboutUsLink).not.toHaveClass('link-active');
+    expect(formsPage).not.toHaveClass('link-active');
     fireEvent.click(aboutUsLink);
     expect(homePageLink).not.toHaveClass('link-active');
     expect(aboutUsLink).toHaveClass('link-active');
+    expect(formsPage).not.toHaveClass('link-active');
+    fireEvent.click(formsPage);
+    expect(homePageLink).not.toHaveClass('link-active');
+    expect(aboutUsLink).not.toHaveClass('link-active');
+    expect(formsPage).toHaveClass('link-active');
   });
 });
 describe('Main', () => {
@@ -41,35 +48,5 @@ describe('Main', () => {
       </BrowserRouter>
     );
     expect(screen.getByTestId('main')).toBeDefined();
-  });
-});
-describe('404', () => {
-  it('404 was rendered', () => {
-    render(
-      <BrowserRouter>
-        <NotFoundPage />
-      </BrowserRouter>
-    );
-    expect(screen.getByTestId('not-found')).toBeDefined();
-  });
-});
-describe('Home page', () => {
-  it('Home page was rendered', () => {
-    render(
-      <BrowserRouter>
-        <HomePage />
-      </BrowserRouter>
-    );
-    expect(screen.getByTestId('home-page')).toBeDefined();
-  });
-});
-describe('About Us', () => {
-  it('About Us was rendered', () => {
-    render(
-      <BrowserRouter>
-        <AboutUs />
-      </BrowserRouter>
-    );
-    expect(screen.getByTestId('about-us')).toBeDefined();
   });
 });
