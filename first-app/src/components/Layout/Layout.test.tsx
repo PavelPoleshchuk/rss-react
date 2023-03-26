@@ -2,9 +2,6 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from '../../App';
 import { BrowserRouter } from 'react-router-dom';
-import NotFoundPage from 'pages/notFound/NotFoundPage';
-import HomePage from 'pages/homePage/HomePage';
-import AboutUs from 'pages/aboutUs/AboutUs';
 
 describe('Header', () => {
   it('header was rendered', () => {

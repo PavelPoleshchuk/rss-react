@@ -1,0 +1,27 @@
+.product {
+  width: calc(100% / 4 - 3 * 10px);
+  min-width: 200px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: teal;
+  border: 2px solid teal;
+}
+
+.img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+  gap: 10px;
+}

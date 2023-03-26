@@ -63,13 +63,6 @@ main {
 }
 
 .forms-page {
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 10px;
-  gap: 10px; */
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -77,8 +70,7 @@ main {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10px px;
-  gap: 5px;
+  padding: 10px;
 }
 
 .forms-input {
@@ -102,6 +94,7 @@ main {
   width: 90%;
   height: 30px;
   padding: 5px 10px;
+  margin-top: 2px;
   border: 1px solid gray;
   border-radius: 5px;
   font-size: 16px;
@@ -111,28 +104,12 @@ main {
 }
 .forms-input input[type='file'] {
   padding: 2px;
-
-  /* width: 0.1px; */
-  /* height: 0.1px; */
-  /* opacity: 0; */
-  /* overflow: hidden; */
-  /* position: absolute; */
-  /* z-index: -1; 
-
-  width: 90%;
-  height: 30px;
-  padding: 5px 10px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  font-size: 16px;
-  color: #333;
-  background-color: #fff;
-  overflow-wrap: break-word; */
 }
 .forms-input input[type='checkbox'] {
   margin-right: 10px;
   width: 20px;
   height: 20px;
+  margin-top: 2px;
   border-radius: 5px;
   border: 1px solid gray;
   appearance: none;
@@ -154,6 +131,7 @@ main {
   height: 40px;
   border: none;
   border-radius: 20px;
+  margin-top: 15px;
   font-size: 16px;
   font-weight: 700;
   color: #fff;
@@ -162,14 +140,9 @@ main {
   transition: all 0.1s ease-in-out;
 }
 .forms-page button[type='submit']:hover {
-  /* width: 52%; */
-  /* height: 42px; */
-  /* border: none;
-  border-radius: 20px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #fff; */
   background-color: #c3920d;
-  /* cursor: pointer;
-  transition: all .1s ease-in-out; */
+}
+.input-error {
+  font-size: 10px;
+  color: red;
 }
