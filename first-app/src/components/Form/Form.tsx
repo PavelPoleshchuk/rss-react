@@ -100,7 +100,13 @@ export class Form extends Component<IFormProps, IFormState> {
             </div>
             <div className="radio-buttons">
               <label>
-                <input ref={this.radio1Ref} type="radio" name="productStatus" value="new" checked />
+                <input
+                  ref={this.radio1Ref}
+                  type="radio"
+                  name="productStatus"
+                  value="new"
+                  defaultChecked
+                />
                 New product
               </label>
               <label>

@@ -19,7 +19,8 @@ class FormPage extends Component<object, IState> {
   };
   render() {
     return (
-      <div style={{ width: '100%' }}>
+      <div className="top-block">
+        <span className="page-number-span">page: Forms</span>
         <Form addNewCard={this.addNewCard} />
         <CardList cardsData={this.state.cardsData} />
       </div>

@@ -4,7 +4,7 @@ const AboutUs = () => {
   return (
     <>
       <div data-testid="about-us" className="top-block">
-        <span>page: About Us</span>
+        <span className="page-number-span">page: About Us</span>
       </div>
       <h1>About Us</h1>
     </>

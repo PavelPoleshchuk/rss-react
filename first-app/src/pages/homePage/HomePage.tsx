@@ -7,7 +7,7 @@ const HomePage = () => {
     <>
       <div data-testid="home-page" className="top-block">
         <Input placeholder={'Your request'} />
-        <span>page: Home</span>
+        <span className="page-number-span">page: Home</span>
       </div>
       <>
         <Products />
