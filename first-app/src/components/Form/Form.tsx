@@ -1,11 +1,13 @@
 import { ICards } from 'components/types/types';
 import MyInput from 'components/UI/MyInput/MyInput';
 import React, { Component } from 'react';
+import styles from './Form.module.css';
 
 interface IFormProps {
   addNewCard: (newCard: ICards) => void;
 }
 interface IFormState {
+  isNoErrors: boolean;
   formErrors: {
     name: boolean;
     date: boolean;
@@ -23,6 +25,7 @@ export class Form extends Component<IFormProps, IFormState> {
     super(props);
   }
   defaultState = {
+    isNoErrors: false,
     formErrors: {
       name: false,
       date: false,
@@ -57,6 +60,12 @@ export class Form extends Component<IFormProps, IFormState> {
         this.setState(({ formErrors }) => ({ formErrors: { ...formErrors, [key]: true } }));
       }
     });
+    if (dataIsValid) {
+      this.setState({ isNoErrors: true });
+      setTimeout(() => {
+        this.setState({ isNoErrors: false });
+      }, 3000);
+    }
     return dataIsValid;
   };
 
@@ -182,6 +191,7 @@ export class Form extends Component<IFormProps, IFormState> {
           <button type="submit" onClick={this.onSubmit}>
             Submit
           </button>
+          {this.state.isNoErrors && <p className={styles.message}>Data has been saved</p>}
         </form>
       </>
     );

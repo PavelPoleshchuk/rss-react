@@ -1,0 +1,12 @@
+.message {
+  width: 11rem;
+  height: 1rem;
+  border: none;
+
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  
+  background-color: red;
+  transition: all 0.1s ease-in-out;
+}
