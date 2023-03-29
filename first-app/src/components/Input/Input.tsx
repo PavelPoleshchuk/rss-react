@@ -1,53 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Input.module.css';
 
-interface InputProps {
-  placeholder: string;
-}
-interface InputState {
-  inputValue: string;
-}
+const Input = () => {
+  const [value, setValue] = useState(localStorage.input || '');
 
-class Input extends React.Component<InputProps, InputState> {
-  constructor(props: InputProps) {
-    super(props);
-    this.state = { inputValue: localStorage.input || '' };
+  useEffect(() => {
+    localStorage.input = value;
+  }, [value]);
 
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.componentWillUnmount = this.componentWillUnmount.bind(this);
-  }
+  const changeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+    console.log(value);
+  };
 
-  componentDidMount() {
-    this.setState({ inputValue: localStorage.input || '' });
-  }
-
-  componentWillUnmount() {
-    localStorage.input = this.state.inputValue;
-  }
-
-  changeInput(value: string) {
-    this.setState({ inputValue: value });
-  }
-
-  render() {
-    return (
-      <>
-        <form>
-          <input
-            data-testid="input"
-            className={styles.input}
-            onChange={(event) => this.changeInput(event.target.value)}
-            value={this.state.inputValue}
-            type="text"
-            placeholder={this.props.placeholder}
-          />
-          <button data-testid="input-button" className={styles.button}>
-            Search
-          </button>
-        </form>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <form>
+        <input
+          data-testid="input"
+          className={styles.input}
+          onChange={changeInput}
+          value={value}
+          type="text"
+          placeholder="Your request"
+        />
+        <button data-testid="input-button" className={styles.button}>
+          Search
+        </button>
+      </form>
+    </>
+  );
+};
 
 export default Input;

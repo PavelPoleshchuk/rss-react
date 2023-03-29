@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <>
       <div data-testid="home-page" className="top-block">
-        <Input placeholder={'Your request'} />
+        <Input />
         <span className="page-number-span">page: Home</span>
       </div>
       <>

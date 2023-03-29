@@ -4,15 +4,15 @@ import Input from './Input';
 
 describe('Input', () => {
   it('Input was rendered', () => {
-    render(<Input placeholder={'xxx'} />);
+    render(<Input />);
     expect(screen.getByTestId('input')).toBeDefined();
-    expect(screen.getByTestId('input')).toHaveAttribute('placeholder', 'xxx');
+    expect(screen.getByTestId('input')).toHaveAttribute('placeholder', 'Your request');
   });
 });
 
 describe('Button', () => {
-  it('Buttton was rendered', () => {
-    render(<Input placeholder={'xxx'} />);
+  it('Button was rendered', () => {
+    render(<Input />);
     expect(screen.getByTestId('input-button')).toBeDefined();
     expect(screen.getByTestId('input-button')).toHaveTextContent('Search');
   });
