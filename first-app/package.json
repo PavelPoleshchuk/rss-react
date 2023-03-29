@@ -26,7 +26,8 @@
     "test": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .tsx --ext .ts",
-    "lint-fix": "eslint . --ext .tsx --ext .ts --fix"
+    "lint-fix": "eslint . --ext .tsx --ext .ts --fix",
+    "commit": "git add . && read -p 'DO YOU WANT TO CREATE A NEW COMMIT (n) OR AMEND THE PREVIOUS COMMIT (a)?\n=> ' choice && if [[ $choice == 'a' ]]; then git commit --amend --no-edit; else git commit -m $1; fi"
   },
   "eslintConfig": {
     "extends": [
