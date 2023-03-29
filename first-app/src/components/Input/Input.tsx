@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './Input.module.css';
 
 const Input = () => {
   const [value, setValue] = useState(localStorage.input || '');
+  const valueRef = useRef();
 
   useEffect(() => {
-    localStorage.input = value;
+    valueRef.current = value;
   }, [value]);
+
+  useEffect(() => {
+    return () => {
+      localStorage.input = valueRef.current;
+      console.log('finish=', localStorage.input);
+    };
+  }, []);
 
   const changeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
-    console.log(value);
   };
 
   return (
