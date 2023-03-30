@@ -39,7 +39,7 @@ export const Form = ({ addNewCard }: IFormProps) => {
     setState(defaultState);
     let dataIsValid = true;
     Object.entries(formData).forEach(([key, value]) => {
-      if (key === 'radio1' || key === 'radio2' || 'id' || 'isNoErrors') return;
+      if (key === 'radio1' || key === 'radio2' || key === 'id') return;
       if (!value) {
         dataIsValid = false;
         setState(({ formErrors }) => ({
@@ -69,6 +69,8 @@ export const Form = ({ addNewCard }: IFormProps) => {
       img: inputLoadFileRef.current!.files![0],
       id: String(new Date()),
     };
+    console.log('data=', data);
+    console.log('validateIfNotEmpty(data)=', validateIfNotEmpty(data));
     if (validateIfNotEmpty(data)) {
       addNewCard(data);
       formRef.current?.reset();
