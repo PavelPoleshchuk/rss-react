@@ -113,9 +113,9 @@ export const Form = ({ addNewCard }: IFormProps) => {
             labelTitle: 'Title:',
             type: 'text',
             id: 'title-input',
+            ref: inputRef,
             placeholder: 'Insert product name',
           }}
-          ref={inputRef}
         />
         {state.formErrors.name && <p className="input-error">Enter title</p>}
 
@@ -126,9 +126,9 @@ export const Form = ({ addNewCard }: IFormProps) => {
             labelTitle: 'Date:',
             type: 'date',
             id: 'date-input',
+            ref: inputDateRef,
             placeholder: 'Insert product date',
           }}
-          ref={inputDateRef}
         />
         {state.formErrors.date && <p className="input-error">Enter date</p>}
 
@@ -139,9 +139,9 @@ export const Form = ({ addNewCard }: IFormProps) => {
             labelTitle: 'Price:',
             type: 'number',
             id: 'price-input',
+            ref: inputPriceRef,
             placeholder: 'Insert product price',
           }}
-          ref={inputPriceRef}
         />
         {state.formErrors.price && <p className="input-error">Enter price</p>}
 
@@ -152,8 +152,8 @@ export const Form = ({ addNewCard }: IFormProps) => {
             labelTitle: 'Checked:',
             type: 'checkbox',
             id: 'checkbox-input',
+            ref: inputCheckboxRef,
           }}
-          ref={inputCheckboxRef}
         />
         {state.formErrors.checkbox && <p className="input-error">Сonfirm your agreement</p>}
         <MyInput
@@ -163,10 +163,10 @@ export const Form = ({ addNewCard }: IFormProps) => {
             labelTitle: 'Image:',
             type: 'file',
             id: 'image-input',
+            ref: inputLoadFileRef,
             placeholder: 'Choice file',
             accept: 'image/jpeg,image/png,image/gif',
           }}
-          ref={inputLoadFileRef}
         />
         {state.formErrors.img && <p className="input-error">Add file</p>}
 
