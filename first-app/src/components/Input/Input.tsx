@@ -12,7 +12,6 @@ const Input = () => {
   useEffect(() => {
     return () => {
       localStorage.input = valueRef.current;
-      console.log('finish=', localStorage.input);
     };
   }, []);
 
