@@ -12,6 +12,7 @@ describe('Header', () => {
     );
     expect(screen.getByText(/home page/i)).toBeInTheDocument();
     expect(screen.getByText(/About Us/i)).toBeInTheDocument();
+    expect(screen.getByText(/Forms Page/i)).toBeInTheDocument();
     expect(screen.getByTestId('header')).toBeDefined();
   });
 
@@ -22,8 +23,8 @@ describe('Header', () => {
       </BrowserRouter>
     );
     const homePageLink = screen.getByTestId('home-page-link');
-    const aboutUsLink = screen.getByTestId('about-us');
-    const formsPage = screen.getByTestId('forms-page');
+    const aboutUsLink = screen.getByTestId('about-us-link');
+    const formsPage = screen.getByTestId('forms-page-link');
     expect(homePageLink).toHaveClass('link-active');
     expect(aboutUsLink).not.toHaveClass('link-active');
     expect(formsPage).not.toHaveClass('link-active');
@@ -44,6 +45,6 @@ describe('Main', () => {
         <App />
       </BrowserRouter>
     );
-    expect(screen.getByTestId('main')).toBeDefined();
+    expect(screen.getByTestId('main-test')).toBeDefined();
   });
 });

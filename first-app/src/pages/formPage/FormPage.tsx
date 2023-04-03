@@ -11,7 +11,7 @@ const FormPage = () => {
   };
 
   return (
-    <div className="top-block">
+    <div className="top-block" data-testid="form-page-test">
       <span className="page-number-span">page: Forms</span>
       <Form addNewCard={addNewCard} />
       <CardList cardsData={stateFP} />

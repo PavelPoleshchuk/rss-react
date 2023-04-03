@@ -52,7 +52,7 @@ export const Form = ({ addNewCard }: IFormProps) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="forms-page">
+      <form data-testid="form-form" onSubmit={handleSubmit(onSubmit)} className="forms-page">
         <div className="forms-input">
           <label>Origin:</label>
           <select
