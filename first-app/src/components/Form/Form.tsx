@@ -1,199 +1,179 @@
 import { ICards } from 'components/types/types';
-import MyInput from 'components/UI/MyInput/MyInput';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import styles from './Form.module.css';
+
+type FormValues = {
+  checkbox: boolean;
+  date: string;
+  img: FileList;
+  name: string;
+  price: string;
+  radio1: string | null;
+  radio2: string | null;
+  select: string;
+};
 
 interface IFormProps {
   addNewCard: (newCard: ICards) => void;
 }
-interface IFormState {
-  isNoErrors: boolean;
-  formErrors: {
-    name: boolean;
-    date: boolean;
-    price: boolean;
-    select: boolean;
-    radio1: boolean;
-    radio2: boolean;
-    checkbox: boolean;
-    img: boolean;
-    id: boolean;
-  };
+interface IState {
+  showMessage: boolean;
 }
-export class Form extends Component<IFormProps, IFormState> {
-  constructor(props: IFormProps) {
-    super(props);
-  }
-  defaultState = {
-    isNoErrors: false,
-    formErrors: {
-      name: false,
-      date: false,
-      price: false,
-      select: false,
-      radio1: false,
-      radio2: false,
-      checkbox: false,
-      img: false,
-      id: false,
-    },
-  };
-  state: IFormState = this.defaultState;
 
-  formRef = React.createRef<HTMLFormElement>();
-  selectRef = React.createRef<HTMLSelectElement>();
-  radio1Ref = React.createRef<HTMLInputElement>();
-  radio2Ref = React.createRef<HTMLInputElement>();
-  inputRef = React.createRef<HTMLInputElement>();
-  inputDateRef = React.createRef<HTMLInputElement>();
-  inputPriceRef = React.createRef<HTMLInputElement>();
-  inputCheckboxRef = React.createRef<HTMLInputElement>();
-  inputLoadFileRef = React.createRef<HTMLInputElement>();
+export const Form = ({ addNewCard }: IFormProps) => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm<FormValues>({ mode: 'onSubmit' });
+  const [state, setState] = useState<IState>({
+    showMessage: false,
+  });
 
-  validateIfNotEmpty = (formData: ICards) => {
-    this.setState(this.defaultState);
-    let dataIsValid = true;
-    Object.entries(formData).forEach(([key, value]) => {
-      if (key === 'radio1' || key === 'radio2') return;
-      if (!value) {
-        dataIsValid = false;
-        this.setState(({ formErrors }) => ({ formErrors: { ...formErrors, [key]: true } }));
-      }
-    });
-    if (dataIsValid) {
-      this.setState({ isNoErrors: true });
-      setTimeout(() => {
-        this.setState({ isNoErrors: false });
-      }, 3000);
-    }
-    return dataIsValid;
-  };
-
-  onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const data = {
-      select: this.selectRef.current!.value,
-      radio1: this.radio1Ref.current!.checked,
-      radio2: this.radio2Ref.current!.checked,
-      name: this.inputRef.current!.value,
-      date: this.inputDateRef.current!.value,
-      price: this.inputPriceRef.current!.value,
-      checkbox: this.inputCheckboxRef.current!.checked,
-      img: this.inputLoadFileRef.current!.files![0],
-      id: String(new Date()),
+  const onSubmit = (data: FormValues) => {
+    const dataTypeICard: ICards = {
+      ...data,
+      img: data.img[0],
+      radio1: Boolean(data.radio1),
+      radio2: Boolean(data.radio2),
+      id: String(Date.now()),
     };
-    if (this.validateIfNotEmpty(data)) {
-      this.props.addNewCard(data);
-      this.formRef.current?.reset();
-    }
+    setState({ showMessage: true });
+    setTimeout(() => {
+      setState({
+        showMessage: false,
+      });
+    }, 2000);
+    addNewCard(dataTypeICard);
+    reset();
   };
 
-  render() {
-    return (
-      <>
-        <form ref={this.formRef} className="forms-page">
-          <div className="forms-input">
-            <label htmlFor="category-select">Origin:</label>
-            <select ref={this.selectRef}>
-              <option value=""> Make choice </option>
-              <option value="USA">USA</option>
-              <option value="Germany">Germany</option>
-              <option value="Belarus">Belarus</option>
-            </select>
+  return (
+    <>
+      <form data-testid="form-form" onSubmit={handleSubmit(onSubmit)} className="forms-page">
+        <div className="forms-input">
+          <label>Origin:</label>
+          <select
+            {...register('select', {
+              required: 'The field is required',
+            })}
+          >
+            <option value=""> Make choice </option>
+            <option value="USA">USA</option>
+            <option value="Germany">Germany</option>
+            <option value="Belarus">Belarus</option>
+          </select>
+        </div>
+        <div className={styles.valid}>
+          {errors?.select && <p className={styles.validP}>{String(errors?.select?.message)}</p>}
+        </div>
+
+        <div className="forms-input">
+          <div className="radio-label">
+            <label>Choose product status:</label>
           </div>
-          {this.state.formErrors.select && <p className="input-error">Choose origin</p>}
-
-          <div className="forms-input">
-            <div className="radio-label">
-              <label>Choose product status:</label>
-            </div>
-            <div className="radio-buttons">
-              <label>
-                <input
-                  ref={this.radio1Ref}
-                  type="radio"
-                  name="productStatus"
-                  value="new"
-                  defaultChecked
-                />
-                New product
-              </label>
-              <label>
-                <input ref={this.radio2Ref} type="radio" name="productStatus" value="used" />
-                Used product
-              </label>
-            </div>
+          <div className="radio-buttons" style={{ marginBottom: '15px' }}>
+            <label>
+              <input
+                {...register('radio1')}
+                type="radio"
+                name="productStatus"
+                value="new"
+                defaultChecked
+              />
+              New product
+            </label>
+            <label>
+              <input {...register('radio2')} type="radio" name="productStatus" value="used" />
+              Used product
+            </label>
           </div>
-          <MyInput
-            data={{
-              className: 'forms-input',
-              htmlFor: 'title-input',
-              labelTitle: 'Title:',
-              type: 'text',
-              id: 'title-input',
-              placeholder: 'Insert product name',
-            }}
-            ref={this.inputRef}
-          />
-          {this.state.formErrors.name && <p className="input-error">Enter title</p>}
+        </div>
 
-          <MyInput
-            data={{
-              className: 'forms-input',
-              htmlFor: 'date-input',
-              labelTitle: 'Date:',
-              type: 'date',
-              id: 'date-input',
-              placeholder: 'Insert product date',
-            }}
-            ref={this.inputDateRef}
+        <div className="forms-input">
+          <label>Title:</label>
+          <input
+            type="text"
+            className={styles.myInput}
+            placeholder="Insert product name"
+            {...register('name', {
+              required: 'The field is required',
+              minLength: { value: 3, message: 'Minimum input length 3 characters' },
+              maxLength: { value: 10, message: 'Maximum input length 10 characters' },
+              pattern: {
+                value: /[A-Z]{1}/,
+                message: 'Please start with a capital letter',
+              },
+            })}
           />
-          {this.state.formErrors.date && <p className="input-error">Enter date</p>}
+        </div>
+        <div className={styles.valid}>
+          {errors?.name && <p className={styles.validP}>{String(errors?.name?.message)}</p>}
+        </div>
 
-          <MyInput
-            data={{
-              className: 'forms-input',
-              htmlFor: 'price-input',
-              labelTitle: 'Price:',
-              type: 'number',
-              id: 'price-input',
-              placeholder: 'Insert product price',
-            }}
-            ref={this.inputPriceRef}
+        <div className="forms-input">
+          <label>Date:</label>
+          <input
+            type="date"
+            {...register('date', {
+              required: 'The field is required',
+            })}
           />
-          {this.state.formErrors.price && <p className="input-error">Enter price</p>}
+        </div>
+        <div className={styles.valid}>
+          {errors?.date && <p className={styles.validP}>{String(errors?.date?.message)}</p>}
+        </div>
 
-          <MyInput
-            data={{
-              className: 'forms-input',
-              htmlFor: 'checkbox-input',
-              labelTitle: 'Checked:',
-              type: 'checkbox',
-              id: 'checkbox-input',
-            }}
-            ref={this.inputCheckboxRef}
+        <div className="forms-input">
+          <label>Price:</label>
+          <input
+            type="number"
+            className={styles.myInput}
+            placeholder="Insert product price"
+            {...register('price', {
+              required: 'The field is required',
+              min: { value: 1, message: 'Minimum value 1$' },
+            })}
           />
-          {this.state.formErrors.checkbox && <p className="input-error">Сonfirm your agreement</p>}
-          <MyInput
-            data={{
-              className: 'forms-input',
-              htmlFor: 'image-input',
-              labelTitle: 'Image:',
-              type: 'file',
-              id: 'image-input',
-              placeholder: 'Choice file',
-              accept: 'image/jpeg,image/png,image/gif',
-            }}
-            ref={this.inputLoadFileRef}
-          />
-          {this.state.formErrors.img && <p className="input-error">Add file</p>}
+        </div>
+        <div className={styles.valid}>
+          {errors?.price && <p className={styles.validP}>{String(errors?.price?.message)}</p>}
+        </div>
 
-          <button type="submit" onClick={this.onSubmit}>
-            Submit
-          </button>
-          {this.state.isNoErrors && <p className={styles.message}>Data has been saved</p>}
-        </form>
-      </>
-    );
-  }
-}
+        <div className="forms-input">
+          <label>Checked:</label>
+          <input
+            type="checkbox"
+            {...register('checkbox', {
+              required: 'The field is required',
+            })}
+          />
+        </div>
+        <div className={styles.valid}>
+          {errors?.checkbox && <p className={styles.validP}>{String(errors?.checkbox?.message)}</p>}
+        </div>
+
+        <div className="forms-input">
+          <label>Image:</label>
+          <input
+            type="file"
+            {...register('img', {
+              required: 'The field is required',
+            })}
+            accept="image/jpeg,image/png,image/gif"
+          />
+        </div>
+        <div className={styles.valid}>
+          {errors?.img && <p className={styles.validP}>{String(errors?.img?.message)}</p>}
+        </div>
+
+        <button type="submit">Submit</button>
+        <div className={styles.valid}>
+          {state.showMessage && <p className={styles.message}>Data has been saved</p>}
+        </div>
+      </form>
+    </>
+  );
+};

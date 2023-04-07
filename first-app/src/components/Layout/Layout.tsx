@@ -9,14 +9,14 @@ const Layout = () => {
         <NavLink data-testid="home-page-link" to="/" className={setActive}>
           Home Page
         </NavLink>
-        <NavLink data-testid="about-us" to="/about" className={setActive}>
+        <NavLink data-testid="about-us-link" to="/about" className={setActive}>
           About Us
         </NavLink>
-        <NavLink data-testid="forms-page" to="/forms" className={setActive}>
+        <NavLink data-testid="forms-page-link" to="/forms" className={setActive}>
           Forms page
         </NavLink>
       </header>
-      <main data-testid="main" className="container">
+      <main data-testid="main-test" className="container">
         <Outlet />
       </main>
     </>

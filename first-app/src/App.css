@@ -84,7 +84,7 @@ main {
   display: flex;
   align-items: center;
   font-size: 16px;
-  color: #333;
+  color: #333333;
 }
 .forms-page input[type='text'],
 .forms-page input[type='date'],
@@ -97,11 +97,10 @@ main {
   margin-top: 2px;
   font-size: 16px;
   overflow-wrap: break-word;
-  color: #333;
-  background-color: #fff;
+  color: #333333;
+  background-color: #ffffff;
   border: 1px solid gray;
   border-radius: 5px;
-  
 }
 .forms-input input[type='file'] {
   padding: 2px;
@@ -132,7 +131,7 @@ main {
   height: 40px;
   border: none;
   border-radius: 20px;
-  margin-top: 15px;
+  margin-top: 5px;
   font-size: 16px;
   font-weight: 700;
   color: #fff;
@@ -143,7 +142,4 @@ main {
 .forms-page button[type='submit']:hover {
   background-color: #c3920d;
 }
-.input-error {
-  font-size: 10px;
-  color: red;
-}
+

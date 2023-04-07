@@ -13,6 +13,7 @@
     "history": "^5.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.8",
     "react-redux": "^8.0.5",
     "react-router": "^6.9.0",
     "react-router-dom": "^6.9.0",
@@ -26,7 +27,8 @@
     "test": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .tsx --ext .ts",
-    "lint-fix": "eslint . --ext .tsx --ext .ts --fix"
+    "lint-fix": "eslint . --ext .tsx --ext .ts --fix",
+    "commit": "git add . && read -p 'DO YOU WANT TO CREATE A NEW COMMIT (n) OR AMEND THE PREVIOUS COMMIT (a)?\n=> ' choice && if [[ $choice == 'a' ]]; then git commit --amend --no-edit; else git commit -m $1; fi"
   },
   "eslintConfig": {
     "extends": [
