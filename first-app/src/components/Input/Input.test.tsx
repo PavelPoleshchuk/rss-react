@@ -4,15 +4,18 @@ import Input from './Input';
 
 describe('Input', () => {
   it('Input was rendered', () => {
-    render(<Input />);
+    render(<Input getQueryFromInput={() => {}} />);
     expect(screen.getByTestId('input')).toBeDefined();
-    expect(screen.getByTestId('input')).toHaveAttribute('placeholder', 'Your request');
+    expect(screen.getByTestId('input')).toHaveAttribute(
+      'placeholder',
+      'Enter character(for example, Rick)'
+    );
   });
 });
 
 describe('Button', () => {
   it('Button was rendered', () => {
-    render(<Input />);
+    render(<Input getQueryFromInput={() => {}} />);
     expect(screen.getByTestId('input-button')).toBeDefined();
     expect(screen.getByTestId('input-button')).toHaveTextContent('Search');
   });

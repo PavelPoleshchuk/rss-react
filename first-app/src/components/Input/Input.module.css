@@ -1,7 +1,9 @@
 .input {
   width: 33%;
   padding: 3px 3px 3px 10px;
+
   color: teal;
+
   border: 2px solid teal;
   border-radius: 10px;
   outline-width: 0;
@@ -10,8 +12,13 @@
 .button {
   margin-left: 5px;
   padding: 3px;
+
   color: teal;
+  
   background-color: white;
   border: 2px solid teal;
   border-radius: 10px;
+}
+.button:hover {
+  scale: 1.05;
 }
