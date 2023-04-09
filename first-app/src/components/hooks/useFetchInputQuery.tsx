@@ -10,7 +10,6 @@ export const useFetchInputQuery = () => {
   const getQueryFromInput = (query: React.InputHTMLAttributes<HTMLInputElement>) =>
     setInputQuery(String(query));
 
-  console.log('inputQuery', inputQuery);
   const query = inputQuery ? `?name=${inputQuery}` : '';
 
   useEffect(() => {
@@ -23,7 +22,6 @@ export const useFetchInputQuery = () => {
         return res.json();
       })
       .then((data) => {
-        console.log('Fetch1=', data);
         setCards(data);
         setIsLoading(false);
       })

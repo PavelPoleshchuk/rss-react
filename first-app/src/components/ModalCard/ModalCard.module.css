@@ -1,4 +1,6 @@
 .card {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,7 +13,7 @@
   border: 2px solid teal;
   border-radius: 10px;
 }
-.card p{
+.card p {
   font-weight: bold;
 }
 
@@ -21,5 +23,16 @@
   object-fit: contain;
   pointer-events: none;
 }
+.cross {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 
+  width: 30px;
+  height: 30px;
 
+  background-image: url(../../images/cross1.png);
+  background-size: contain;
+
+  cursor: pointer;
+}

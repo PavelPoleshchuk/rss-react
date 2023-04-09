@@ -3,7 +3,7 @@ import Modal from 'components/Modal/Modal';
 import ModalCard from 'components/ModalCard/ModalCard';
 import Products from 'components/Products/Products';
 import ErrorLoadingBlock from 'components/errorLoadingBlock/ErrorLoadingBlock';
-import useFetchCardQuery from 'components/hooks/useFetchCardQuery';
+import { useFetchCardQuery } from 'components/hooks/useFetchCardQuery';
 import { useFetchInputQuery } from 'components/hooks/useFetchInputQuery';
 import React from 'react';
 
@@ -23,7 +23,7 @@ const HomePage = () => {
       <Products cards={cards} getClickFromCard={getClickFromCard} />
       {modalId && (
         <Modal getClickCloseModal={getClickCloseModal}>
-          {modalCard && <ModalCard card={modalCard} />}
+          {modalCard && <ModalCard card={modalCard} getClickCloseModal={getClickCloseModal} />}
           <ErrorLoadingBlock error={modalError} isLoading={isModalLoading} />
         </Modal>
       )}

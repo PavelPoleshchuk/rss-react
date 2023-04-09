@@ -27,7 +27,6 @@ export const useFetchCardQuery = () => {
         return res.json();
       })
       .then((data) => {
-        console.log('Fetch2=', data);
         setModalCard(data);
         setIsModalLoading(false);
       })
@@ -40,4 +39,4 @@ export const useFetchCardQuery = () => {
   return { modalId, isModalLoading, modalCard, modalError, getClickFromCard, getClickCloseModal };
 };
 
-export default useFetchCardQuery;
+// export default useFetchCardQuery;

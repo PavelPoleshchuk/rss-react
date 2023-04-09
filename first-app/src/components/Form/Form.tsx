@@ -52,18 +52,28 @@ export const Form = ({ addNewCard }: IFormProps) => {
 
   return (
     <>
-      <form data-testid="form-form" onSubmit={handleSubmit(onSubmit)} className="forms-page">
+      <form data-testid="form-form" className="forms-page" onSubmit={handleSubmit(onSubmit)}>
         <div className="forms-input">
           <label>Origin:</label>
           <select
+            data-testid="form-select"
             {...register('select', {
               required: 'The field is required',
             })}
           >
-            <option value=""> Make choice </option>
-            <option value="USA">USA</option>
-            <option value="Germany">Germany</option>
-            <option value="Belarus">Belarus</option>
+            <option data-testid="form-value-1" value="">
+              {' '}
+              Make choice{' '}
+            </option>
+            <option data-testid="form-value-2" value="USA">
+              USA
+            </option>
+            <option data-testid="form-value-3" value="Germany">
+              Germany
+            </option>
+            <option data-testid="form-value-4" value="Belarus">
+              Belarus
+            </option>
           </select>
         </div>
         <div className={styles.valid}>
@@ -77,6 +87,7 @@ export const Form = ({ addNewCard }: IFormProps) => {
           <div className="radio-buttons" style={{ marginBottom: '15px' }}>
             <label>
               <input
+                data-testid="form-radio1"
                 {...register('radio1')}
                 type="radio"
                 name="productStatus"
@@ -86,7 +97,13 @@ export const Form = ({ addNewCard }: IFormProps) => {
               New product
             </label>
             <label>
-              <input {...register('radio2')} type="radio" name="productStatus" value="used" />
+              <input
+                data-testid="form-radio2"
+                {...register('radio2')}
+                type="radio"
+                name="productStatus"
+                value="used"
+              />
               Used product
             </label>
           </div>
@@ -95,6 +112,7 @@ export const Form = ({ addNewCard }: IFormProps) => {
         <div className="forms-input">
           <label>Title:</label>
           <input
+            data-testid="form-name"
             type="text"
             className={styles.myInput}
             placeholder="Insert product name"
@@ -116,6 +134,7 @@ export const Form = ({ addNewCard }: IFormProps) => {
         <div className="forms-input">
           <label>Date:</label>
           <input
+            data-testid="form-date"
             type="date"
             {...register('date', {
               required: 'The field is required',
@@ -126,9 +145,10 @@ export const Form = ({ addNewCard }: IFormProps) => {
           {errors?.date && <p className={styles.validP}>{String(errors?.date?.message)}</p>}
         </div>
 
-        <div className="forms-input">
+        <div className="forms-price">
           <label>Price:</label>
           <input
+            data-testid="form-price"
             type="number"
             className={styles.myInput}
             placeholder="Insert product price"
@@ -145,6 +165,7 @@ export const Form = ({ addNewCard }: IFormProps) => {
         <div className="forms-input">
           <label>Checked:</label>
           <input
+            data-testid="form-checkbox"
             type="checkbox"
             {...register('checkbox', {
               required: 'The field is required',
@@ -158,6 +179,7 @@ export const Form = ({ addNewCard }: IFormProps) => {
         <div className="forms-input">
           <label>Image:</label>
           <input
+            data-testid="form-img"
             type="file"
             {...register('img', {
               required: 'The field is required',
@@ -169,7 +191,9 @@ export const Form = ({ addNewCard }: IFormProps) => {
           {errors?.img && <p className={styles.validP}>{String(errors?.img?.message)}</p>}
         </div>
 
-        <button type="submit">Submit</button>
+        <button data-testid="form-button " type="submit">
+          Submit
+        </button>
         <div className={styles.valid}>
           {state.showMessage && <p className={styles.message}>Data has been saved</p>}
         </div>

@@ -5,13 +5,15 @@ import { getFormattedDate } from 'tools/getDate';
 
 interface IModalCardProps {
   card: IResultsCard;
+  getClickCloseModal: () => void;
 }
 
-const ModalCard = ({ card }: IModalCardProps) => {
+const ModalCard = ({ card, getClickCloseModal }: IModalCardProps) => {
   return (
     <>
       {card && (
-        <div className={styles.card}>
+        <div onClick={getClickCloseModal} className={styles.card}>
+          <div className={styles.cross}></div>
           <img
             data-testid={`img1-${card.id}`}
             src={card.image}
