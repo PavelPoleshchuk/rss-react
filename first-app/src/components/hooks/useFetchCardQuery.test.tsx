@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { dataApi } from '../data/dataApi';
 import { useFetchCardQuery } from './useFetchCardQuery';
 
@@ -17,7 +17,10 @@ describe('useFetchCardQuery', () => {
 
   it('should', async () => {
     const { result } = renderHook(() => useFetchCardQuery());
-    result.current.getClickFromCard('1');
+    act(() => {
+      result.current.getClickFromCard('1');
+    });
+
     await waitFor(() => {
       expect(global.fetch).toBeCalledWith(`https://rickandmortyapi.com/api/character/1`);
     });
@@ -25,7 +28,10 @@ describe('useFetchCardQuery', () => {
     // await waitFor(() => {
     //   expect(result.current.modalCard).toEqual(dataApi.results[0]);
     // });
-    result.current.getClickCloseModal();
+
+    act(() => {
+      result.current.getClickCloseModal();
+    });
     await waitFor(() => {
       expect(global.fetch).toHaveBeenNthCalledWith(
         1,
@@ -34,3 +40,7 @@ describe('useFetchCardQuery', () => {
     });
   });
 });
+
+// fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'test' } })
+
+// screen.getByRole('button').click();
