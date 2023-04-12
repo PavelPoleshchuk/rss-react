@@ -25,14 +25,15 @@
 }
 .cross {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
 
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 
-  background-image: url(../../images/cross1.png);
+  background-image: url(../../images/cross.png);
   background-size: contain;
+  background-color: grey;
 
   cursor: pointer;
 }
