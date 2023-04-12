@@ -145,7 +145,7 @@ export const Form = ({ addNewCard }: IFormProps) => {
           {errors?.date && <p className={styles.validP}>{String(errors?.date?.message)}</p>}
         </div>
 
-        <div className="forms-price">
+        <div className="forms-input">
           <label>Price:</label>
           <input
             data-testid="form-price"
