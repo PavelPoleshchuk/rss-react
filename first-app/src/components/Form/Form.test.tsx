@@ -1,10 +1,16 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Form } from './Form';
+import { Provider } from 'react-redux';
+import { store } from '../../store/store';
 
 describe('Form', () => {
   it('Form was rendered', () => {
-    render(<Form addNewCard={() => {}} />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     expect(screen.getByTestId('form-form')).toBeDefined();
 
     expect(screen.getByTestId('form-checkbox')).toBeDefined();
@@ -44,7 +50,11 @@ describe('Form', () => {
 
 describe('Form button', () => {
   it('Button was rendered', () => {
-    render(<Form addNewCard={() => {}} />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     expect(screen.getByTestId('form-button')).toBeDefined();
     expect(screen.getByTestId('form-button')).toHaveTextContent('Submit');
     expect(screen.getByTestId('form-button')).toHaveAttribute('type', 'submit');

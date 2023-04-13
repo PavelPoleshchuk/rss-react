@@ -11,7 +11,7 @@ export interface IProduct {
   };
 }
 
-export interface ICards {
+export interface ICard {
   name: string;
   date: string;
   price: string;

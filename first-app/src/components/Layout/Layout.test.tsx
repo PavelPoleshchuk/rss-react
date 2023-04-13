@@ -2,12 +2,16 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from '../../App';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from '../../store/store';
 
 describe('Header', () => {
   it('header was rendered', () => {
     render(
       <BrowserRouter>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </BrowserRouter>
     );
     expect(screen.getByText(/home page/i)).toBeInTheDocument();
@@ -19,7 +23,9 @@ describe('Header', () => {
   it('navlink must be active onclick', () => {
     render(
       <BrowserRouter>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </BrowserRouter>
     );
     const homePageLink = screen.getByTestId('home-page-link');
@@ -42,7 +48,9 @@ describe('Main', () => {
   it('main was rendered', () => {
     render(
       <BrowserRouter>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </BrowserRouter>
     );
     expect(screen.getByTestId('main-test')).toBeDefined();

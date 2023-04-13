@@ -1,9 +1,9 @@
-import { ICards } from 'components/types/types';
+import { ICard } from 'components/types/types';
 import React from 'react';
 import styles from './CardList.module.css';
 
 interface IProps {
-  cardsData: ICards[];
+  cardsData: ICard[];
 }
 
 export const CardList = ({ cardsData }: IProps) => {
