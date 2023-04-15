@@ -1,16 +1,22 @@
 import { IResultsCard } from 'components/types/types';
 import React from 'react';
 import styles from './Product.module.css';
+import { useDispatch } from 'react-redux';
+import { addCardQuery, modalOpen } from 'store/homePageSlice/homePageSlice';
 export interface IProductProps {
   product: IResultsCard;
-  getClickFromCard: (id: string) => void;
 }
 
-const Product = ({ product, getClickFromCard }: IProductProps) => {
+const Product = ({ product }: IProductProps) => {
+  const dispatch = useDispatch();
+
   return (
     <div
       id={`${product.id}`}
-      onClick={(e) => getClickFromCard((e.target as HTMLInputElement).id)}
+      onClick={(e) => {
+        dispatch(addCardQuery((e.target as HTMLInputElement).id));
+        dispatch(modalOpen());
+      }}
       className={styles.product}
       data-testid={`product-${product.id}`}
     >

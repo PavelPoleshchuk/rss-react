@@ -25,7 +25,7 @@ export const Form = () => {
     reset,
   } = useForm<FormValues>({ mode: 'onSubmit' });
 
-  const showMessage = useSelector((state: RootState) => state.formCards.showData);
+  const showMessage = useSelector((state: RootState) => state.formPage.showData);
   const dispatch = useDispatch();
 
   const onSubmit = (data: FormValues) => {

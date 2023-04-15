@@ -2,6 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { dataApi } from '../data/dataApi';
 import Products from './Products';
+import { Provider } from 'react-redux';
+import { store } from '../../store/store';
 
 describe('Products', () => {
   beforeAll(() => {
@@ -17,7 +19,11 @@ describe('Products', () => {
   });
 
   it('should render 20 cards with correct data', () => {
-    render(<Products cards={dataApi} getClickFromCard={() => {}} />);
+    render(
+      <Provider store={store}>
+        <Products cards={dataApi} />
+      </Provider>
+    );
     dataApi.results.forEach((elem) => {
       expect(screen.getByTestId(`img-${elem.id}`)).toHaveAttribute('src', elem.image);
       expect(screen.getByTestId(`img-${elem.id}`)).toHaveAttribute('alt', elem.name);

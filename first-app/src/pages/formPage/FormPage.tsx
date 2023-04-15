@@ -6,7 +6,7 @@ import type { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 
 const FormPage = () => {
-  const cardsData = useSelector((state: RootState) => state.formCards.cardsArray);
+  const cardsData = useSelector((state: RootState) => state.formPage.cardsArray);
 
   return (
     <div className="top-block" data-testid="form-page-test">

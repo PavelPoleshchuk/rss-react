@@ -1,14 +1,16 @@
 import React from 'react';
 import styles from './Modal.module.css';
+import { useDispatch } from 'react-redux';
+import { modalClose } from 'store/homePageSlice/homePageSlice';
 
 interface IModalProps {
   children: React.ReactNode;
-  getClickCloseModal: () => void;
 }
-const Modal = ({ children, getClickCloseModal }: IModalProps) => {
+const Modal = ({ children }: IModalProps) => {
+  const dispatch = useDispatch();
   return (
     <>
-      <div onClick={getClickCloseModal} className={styles.modal}></div>
+      <div onClick={() => dispatch(modalClose())} className={styles.modal}></div>
       <div className={styles.card}>{children}</div>;
     </>
   );
