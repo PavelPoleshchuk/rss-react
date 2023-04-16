@@ -10,8 +10,15 @@ const Modal = ({ children }: IModalProps) => {
   const dispatch = useDispatch();
   return (
     <>
-      <div onClick={() => dispatch(modalClose())} className={styles.modal}></div>
-      <div className={styles.card}>{children}</div>;
+      <div
+        data-testid="modal1"
+        onClick={() => dispatch(modalClose())}
+        className={styles.modal}
+      ></div>
+      <div data-testid="modal2" className={styles.card}>
+        {children}
+      </div>
+      ;
     </>
   );
 };

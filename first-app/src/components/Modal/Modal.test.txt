@@ -1,0 +1,40 @@
+import React from 'react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { Provider, useDispatch } from 'react-redux';
+import { store } from '../../store/store';
+import Modal from './Modal';
+import { modalClose } from 'store/homePageSlice/homePageSlice';
+
+jest.mock('store/homePageSlice/homePageSlice', () => ({ modalClose: jest.fn() }));
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useDispatch: jest.fn(),
+}));
+
+describe('Modal', () => {
+  let mockFn: jest.Mock;
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+  beforeEach(() => {
+    mockFn = jest.fn();
+    (useDispatch as jest.Mock).mockReturnValue(mockFn);
+  });
+  it('should render modal', async () => {
+    render(
+      <Provider store={store}>
+        <Modal>
+          <div>test</div>
+        </Modal>
+      </Provider>
+    );
+
+    const modalShadow = screen.getByTestId('modal1');
+
+    expect(modalShadow).toBeDefined();
+    expect(screen.getByTestId('modal2')).toBeDefined();
+
+    fireEvent.click(modalShadow);
+    await waitFor(() => expect(mockFn).toBeCalledWith(modalClose));
+  });
+});
