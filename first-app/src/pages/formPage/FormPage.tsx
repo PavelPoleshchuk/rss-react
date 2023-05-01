@@ -1,20 +1,18 @@
 import { CardList } from 'components/cardList/CardList';
 import { Form } from 'components/Form/Form';
-import { ICards } from 'components/types/types';
-import React, { useState } from 'react';
+import React from 'react';
+
+import type { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
 
 const FormPage = () => {
-  const [stateFP, setStateFP] = useState<ICards[]>([]);
-
-  const addNewCard = (newCard: ICards) => {
-    setStateFP((prevState) => [...prevState, newCard]);
-  };
+  const cardsData = useSelector((state: RootState) => state.formPage.cardsArray);
 
   return (
     <div className="top-block" data-testid="form-page-test">
       <span className="page-number-span">page: Forms</span>
-      <Form addNewCard={addNewCard} />
-      <CardList cardsData={stateFP} />
+      <Form />
+      <CardList cardsData={cardsData} />
     </div>
   );
 };

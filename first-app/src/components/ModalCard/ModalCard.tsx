@@ -2,18 +2,21 @@ import { IResultsCard } from 'components/types/types';
 import React from 'react';
 import styles from './ModalCard.module.css';
 import { getFormattedDate } from 'tools/getDate';
+import { useDispatch } from 'react-redux';
+import { modalClose } from 'store/homePageSlice/homePageSlice';
 
 interface IModalCardProps {
   card: IResultsCard;
-  getClickCloseModal: () => void;
 }
 
-const ModalCard = ({ card, getClickCloseModal }: IModalCardProps) => {
+const ModalCard = ({ card }: IModalCardProps) => {
+  const dispatch = useDispatch();
+
   return (
     <>
       {card && (
         <div className={styles.card}>
-          <div onClick={getClickCloseModal} className={styles.cross}></div>
+          <div onClick={() => dispatch(modalClose())} className={styles.cross}></div>
           <img
             data-testid={`img1-${card.id}`}
             src={card.image}

@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Input.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { addInputQuery, addSubmittedQuery } from '../../store/homePageSlice/homePageSlice';
+import { RootState } from 'store/store';
 
-interface IInputProps {
-  getQueryFromInput: (query: React.InputHTMLAttributes<HTMLInputElement>) => void;
-}
-
-const Input = ({ getQueryFromInput }: IInputProps) => {
-  const [value, setValue] = useState(localStorage.input || '');
+const Input = () => {
+  const dispatch = useDispatch();
+  const value = useSelector((state: RootState) => state.homePage.inputQuery);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    getQueryFromInput(value);
-    localStorage.input = value;
+    dispatch(addSubmittedQuery());
   };
-
   const changeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    dispatch(addInputQuery(event.target.value));
   };
 
   return (

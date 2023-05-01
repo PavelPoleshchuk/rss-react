@@ -1,7 +1,10 @@
-import { ICards } from 'components/types/types';
-import React, { useState } from 'react';
+import { ICard } from 'components/types/types';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './Form.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { showOn, showOff, addCard } from '../../store/formPageSlice/formPageSlice';
+import { RootState } from 'store/store';
 
 type FormValues = {
   checkbox: boolean;
@@ -14,39 +17,30 @@ type FormValues = {
   select: string;
 };
 
-interface IFormProps {
-  addNewCard: (newCard: ICards) => void;
-}
-interface IState {
-  showMessage: boolean;
-}
-
-export const Form = ({ addNewCard }: IFormProps) => {
+export const Form = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
   } = useForm<FormValues>({ mode: 'onSubmit' });
-  const [state, setState] = useState<IState>({
-    showMessage: false,
-  });
+
+  const showMessage = useSelector((state: RootState) => state.formPage.showData);
+  const dispatch = useDispatch();
 
   const onSubmit = (data: FormValues) => {
-    const dataTypeICard: ICards = {
+    const dataTypeICard: ICard = {
       ...data,
       img: data.img[0],
       radio1: Boolean(data.radio1),
       radio2: Boolean(data.radio2),
       id: String(Date.now()),
     };
-    setState({ showMessage: true });
+    dispatch(showOn());
     setTimeout(() => {
-      setState({
-        showMessage: false,
-      });
+      dispatch(showOff());
     }, 2000);
-    addNewCard(dataTypeICard);
+    dispatch(addCard(dataTypeICard));
     reset();
   };
 
@@ -195,7 +189,7 @@ export const Form = ({ addNewCard }: IFormProps) => {
           Submit
         </button>
         <div className={styles.valid}>
-          {state.showMessage && <p className={styles.message}>Data has been saved</p>}
+          {showMessage && <p className={styles.message}>Data has been saved</p>}
         </div>
       </form>
     </>
