@@ -16,14 +16,14 @@ describe('Products', () => {
     jest.clearAllMocks();
   });
 
-  it('should render all cards with correct data', () => {
-    render(<Products />);
-    dataApi.forEach((elem) => {
+  it('should render 20 cards with correct data', () => {
+    render(<Products cards={dataApi} getClickFromCard={() => {}} />);
+    dataApi.results.forEach((elem) => {
       expect(screen.getByTestId(`img-${elem.id}`)).toHaveAttribute('src', elem.image);
-      expect(screen.getByTestId(`img-${elem.id}`)).toHaveAttribute('alt', elem.title);
-      expect(screen.getByTestId(`title-${elem.id}`)).toHaveTextContent(elem.title);
-      expect(screen.getByTestId(`price-${elem.id}`)).toHaveTextContent(String(elem.price));
-      expect(screen.getByTestId(`rate-${elem.id}`)).toHaveTextContent(String(elem.rating.rate));
+      expect(screen.getByTestId(`img-${elem.id}`)).toHaveAttribute('alt', elem.name);
+      expect(screen.getByTestId(`title-${elem.id}`)).toHaveTextContent(elem.name);
+      expect(screen.getByTestId(`title-${elem.id}`)).toHaveProperty('style');
+      expect(screen.getByTestId(`product-${elem.id}`)).toHaveProperty('className');
     });
   });
 });

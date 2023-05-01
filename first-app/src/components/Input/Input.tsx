@@ -1,19 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Input.module.css';
 
-const Input = () => {
+interface IInputProps {
+  getQueryFromInput: (query: React.InputHTMLAttributes<HTMLInputElement>) => void;
+}
+
+const Input = ({ getQueryFromInput }: IInputProps) => {
   const [value, setValue] = useState(localStorage.input || '');
-  const valueRef = useRef();
 
-  useEffect(() => {
-    valueRef.current = value;
-  }, [value]);
-
-  useEffect(() => {
-    return () => {
-      localStorage.input = valueRef.current;
-    };
-  }, []);
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    getQueryFromInput(value);
+    localStorage.input = value;
+  };
 
   const changeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -21,14 +20,14 @@ const Input = () => {
 
   return (
     <>
-      <form>
+      <form onSubmit={submit}>
         <input
           data-testid="input"
           className={styles.input}
           onChange={changeInput}
           value={value}
           type="text"
-          placeholder="Your request"
+          placeholder="Enter character(for example, Rick)"
         />
         <button data-testid="input-button" className={styles.button}>
           Search

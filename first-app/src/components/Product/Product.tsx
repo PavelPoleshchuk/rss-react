@@ -1,31 +1,27 @@
-import { IProduct } from 'components/types/types';
+import { IResultsCard } from 'components/types/types';
 import React from 'react';
 import styles from './Product.module.css';
 export interface IProductProps {
-  product: IProduct;
+  product: IResultsCard;
+  getClickFromCard: (id: string) => void;
 }
 
-const Product = ({ product }: IProductProps) => {
+const Product = ({ product, getClickFromCard }: IProductProps) => {
   return (
-    <div className={styles.product}>
+    <div
+      id={`${product.id}`}
+      onClick={(e) => getClickFromCard((e.target as HTMLInputElement).id)}
+      className={styles.product}
+      data-testid={`product-${product.id}`}
+    >
       <img
         data-testid={`img-${product.id}`}
         src={product.image}
         className={styles.img}
-        alt={product.title}
+        alt={product.name}
       />
-      <p data-testid={`title-${product.id}`}>{product.title}</p>
-      <p style={{ fontWeight: 'bold' }}>
-        Price:
-        <span data-testid={`price-${product.id}`} style={{ fontWeight: 'bold' }}>
-          {product.price}
-        </span>
-      </p>
-      <p style={{ fontWeight: 'bold' }}>
-        Rate:
-        <span data-testid={`rate-${product.id}`} style={{ fontWeight: 'bold' }}>
-          {product.rating.rate}
-        </span>
+      <p style={{ pointerEvents: 'none' }} data-testid={`title-${product.id}`}>
+        {product.name}
       </p>
     </div>
   );

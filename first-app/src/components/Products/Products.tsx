@@ -1,14 +1,17 @@
 import Product from 'components/Product/Product';
-import React, { useState } from 'react';
-import { dataApi } from '../data/dataApi';
-
-const Products = () => {
-  const [product] = useState(dataApi);
+import React from 'react';
+import { IRMApi } from '../types/types';
+interface IProps {
+  cards: IRMApi | null;
+  getClickFromCard: (id: string) => void;
+}
+const Products = ({ cards, getClickFromCard }: IProps) => {
   return (
     <>
-      {product.map((prod) => (
-        <Product product={prod} key={prod.id} />
-      ))}
+      {cards &&
+        cards.results.map((prod) => (
+          <Product product={prod} key={prod.id} getClickFromCard={getClickFromCard} />
+        ))}
     </>
   );
 };
